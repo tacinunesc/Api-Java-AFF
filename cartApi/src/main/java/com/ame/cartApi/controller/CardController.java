@@ -1,5 +1,6 @@
 package com.ame.cartApi.controller;
 
+import com.ame.cartApi.controller.request.CreateCardRequest;
 import com.ame.cartApi.model.Card;
 import com.ame.cartApi.service.CardService;
 import org.slf4j.Logger;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,15 +29,7 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    //GET localhost::8080/card/health
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/health", produces = "application/json")
-    public String health() {
-        LOG.info("avaliando saúde da aplicação");
-        return "{\"status\": \"OK\"}";
-    }
-
-    //GET localhost::8080/card/{id}
+    //GET localhost:8080/card/{id}
     @GetMapping("{id}")
     public Card findCardById(@PathVariable("id") int id) {
         LOG.info("Iniciando busca pelo card com id [{}]", id);
@@ -45,5 +40,12 @@ public class CardController {
         }
 
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Card não encontrado");
+    }
+
+    //POST localhost:8080/card/
+    @PostMapping
+    public Card createCard(@RequestBody CreateCardRequest createCardRequest) {
+        LOG.info("Iniciando criação de Card com nome [{}]", createCardRequest.getName());
+        return cardService.createCard(createCardRequest);
     }
 }
