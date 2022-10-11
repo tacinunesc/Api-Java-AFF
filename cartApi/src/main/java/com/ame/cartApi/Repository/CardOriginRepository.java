@@ -4,11 +4,8 @@ package com.ame.cartApi.Repository;
 import com.ame.cartApi.model.CardOrigin;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 @Repository
-public interface CardOriginRepository {
-    Optional<CardOrigin> findById(int id);
-
-    CardOrigin save(CardOrigin cardOrigin);
-}
+public interface CardOriginRepository extends JpaRepository<CardOrigin, Long> {}

@@ -1,9 +1,8 @@
 package com.ame.cartApi.service;
 
-
+import com.ame.cartApi.Repository.CardOriginRepository;
 import com.ame.cartApi.controller.request.CreateCardOriginRequest;
 import com.ame.cartApi.exception.EntityNotFoundException;
-import com.ame.cartApi.Repository.CardOriginRepository;
 import com.ame.cartApi.model.CardOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class CardOriginService {
         this.cardOriginRepository = cardOriginRepository;
     }
 
-    public CardOrigin findById(int id) {
+    public CardOrigin findById(long id) {
         return this.cardOriginRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Card origin id [" + id + "] not found."));
     }

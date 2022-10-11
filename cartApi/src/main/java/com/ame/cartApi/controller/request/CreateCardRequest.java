@@ -1,5 +1,4 @@
 package com.ame.cartApi.controller.request;
-
 public class CreateCardRequest {
 
     private String name;
@@ -9,6 +8,7 @@ public class CreateCardRequest {
     private int skill;
     private int gear;
     private int intellect;
+    private long originId;
     private String imageUrl;
 
 
@@ -76,6 +76,14 @@ public class CreateCardRequest {
         this.imageUrl = imageUrl;
     }
 
+    public long getOriginId() {
+        return originId;
+    }
+
+    public void setOriginId(long originId) {
+        this.originId = originId;
+    }
+
     @Override
     public String toString() {
         return "CreateCardRequest{" +
@@ -85,6 +93,7 @@ public class CreateCardRequest {
                 ", speed=" + speed +
                 ", skill=" + skill +
                 ", gear=" + gear +
+                ", originId=" + originId +
                 ", intellect=" + intellect +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
